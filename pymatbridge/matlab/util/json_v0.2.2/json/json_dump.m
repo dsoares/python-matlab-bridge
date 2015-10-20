@@ -159,7 +159,10 @@ function obj = dump_data_(value, options)
     for i = 1:length(keys)
       try
           obj.put(keys{i},dump_data_(value.(keys{i}), options));
-      catch ME
+      % Not supported in R2007a
+      %catch ME
+      catch
+          ME = lasterror()
           obj.put(keys{i}, dump_data_(ME.message, options))
       end
     end

@@ -63,7 +63,10 @@ try
 		response.content.stdout = sprintf('could not open %s for read',diary_file);
 	end
 	delete(diary_file)
-catch ME
+% Not supported in R2007a
+%catch ME
+catch
+	ME = lasterror()
 	diary('off');
 	response.success = false;
 	response.content.stdout = ME.message;

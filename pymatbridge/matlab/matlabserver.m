@@ -6,7 +6,8 @@ function matlabserver(socket_address)
 json_startup
 messenger('init', socket_address);
 
-c=onCleanup(@()exit);
+% Not supported in R2007a
+%c=onCleanup(@()exit);
 
 while(1)
     msg_in = messenger('listen');

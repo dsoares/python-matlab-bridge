@@ -21,7 +21,10 @@ function json_write(value, filename, varargin)
     fid = fopen(filename, 'w');
     fprintf(fid, '%s', json_dump(value, varargin{:}));
     fclose(fid);
-  catch e
+  % Not supported in R2007a
+  %catch e
+  catch
+    e = lasterror()
     if fid ~= 0, fclose(fid); end
     rethrow(e);
   end

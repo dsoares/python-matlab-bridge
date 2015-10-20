@@ -21,7 +21,10 @@ function value = json_read(filename, varargin)
     fid = fopen(filename, 'r');
     value = json_load(fscanf(fid, '%c', inf));
     fclose(fid);
-  catch e
+  % Not supported in R2007a
+  %catch e
+  catch
+    e = lasterror()
     if fid ~= 0, fclose(fid); end
     rethrow(e);
   end
